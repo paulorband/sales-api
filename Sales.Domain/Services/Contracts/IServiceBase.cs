@@ -1,9 +1,9 @@
 ﻿using Sales.Domain.Entities;
 using System.Collections.Generic;
 
-namespace Sales.Domain.Repositories
+namespace Sales.Domain.Services.Contracts
 {
-	public interface IRepositoryBase<TEntity> where TEntity : EntityBase
+	public interface IServiceBase<TEntity> where TEntity : EntityBase
 	{
 		IList<TEntity> GetAll();
 		void Insert(TEntity entity);
