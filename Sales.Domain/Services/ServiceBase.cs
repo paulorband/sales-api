@@ -14,27 +14,27 @@ namespace Sales.Domain.Services
 
 		protected IRepositoryBase<TEntity> Repository { get; }
 
-		public void Delete(TEntity entity)
+		public virtual void Delete(TEntity entity)
 		{
 			Repository.Delete(entity);
 		}
 
-		public IList<TEntity> GetAll()
+		public virtual IList<TEntity> GetAll()
 		{
 			return Repository.GetAll();
 		}
 
-		public TEntity GetById(long id)
+		public virtual TEntity GetById(long id)
 		{
 			return Repository.GetById(id);
 		}
 
-		public void Insert(TEntity entity)
+		public virtual void Insert(TEntity entity)
 		{
 			Repository.Insert(entity);
 		}
 
-		public void Update(TEntity entity)
+		public virtual void Update(TEntity entity)
 		{
 			Repository.Update(entity);
 		}
