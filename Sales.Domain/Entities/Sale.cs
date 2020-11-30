@@ -6,8 +6,8 @@ namespace Sales.Domain.Entities
 	public class Sale : EntityBase
 	{
 		public Seller Seller { get; set; }
-		public DateTime Date { get; set; }
-		public SaleStatus Status { get; set; }
+		public DateTime Date { get; set; } = DateTime.Now;
+		public SaleStatus Status { get; set; } = SaleStatus.WaitingPayment;
 		public IList<SaleItem> Items { get; set; } = new List<SaleItem>();
 
 		public void AddItem(SaleItem saleItem)

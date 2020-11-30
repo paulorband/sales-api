@@ -29,10 +29,34 @@ namespace Sales.Domain.Tests
 		}
 
 		[Test]
-		public void Not_throw_entity_validation_exception_when_try_to_insert_sale_that_have_items()
+		public void Throw_entity_validation_exception_when_try_to_insert_sale_that_have_no_valid_seller()
 		{
 			var sale = new Sale();
+
+			Assert.Throws<EntityValidationException>(() => SaleService.Insert(sale));
+
+			sale.Seller = new Seller();
 			
+			Assert.Throws<EntityValidationException>(() => SaleService.Insert(sale));
+		}
+
+		[Test]
+		public void Not_throw_entity_validation_exception_when_try_to_insert_sale_that_have_items()
+		{
+			var sale = new Sale() { Seller = new Seller() { Id = 1 } };
+			
+			sale.AddItem(new SaleItem());
+
+			SaleService.Insert(sale);
+
+			Assert.Pass();
+		}
+
+		[Test]
+		public void Not_throw_entity_validation_exception_when_try_to_insert_sale_that_have_a_valid_seller()
+		{
+			var sale = new Sale() { Seller = new Seller() { Id = 1 } };
+
 			sale.AddItem(new SaleItem());
 
 			SaleService.Insert(sale);

@@ -9,12 +9,13 @@ namespace Sales.Domain.Services
 {
 	public class SaleService : ServiceBase<Sale>, ISaleService
 	{
+		private IValidator<Sale> SaleValidator { get; }
+
 		public SaleService(ISaleRepository saleRepository, IValidator<Sale> saleValidator) : base(saleRepository)
 		{
 			SaleValidator = saleValidator;
 		}
 
-		protected IValidator<Sale> SaleValidator { get; }
 
 		public override void Insert(Sale sale)
 		{

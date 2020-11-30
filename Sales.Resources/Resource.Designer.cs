@@ -61,6 +61,15 @@ namespace Sales.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A sale mus have a valid seller.
+        /// </summary>
+        public static string ASaleMusHaveAValidSeller {
+            get {
+                return ResourceManager.GetString("ASaleMusHaveAValidSeller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A sale must have at least one item.
         /// </summary>
         public static string ASaleMustHaveAtLeastOneItem {

@@ -14,6 +14,9 @@ namespace Sales.Domain.Validators
 			if (!entity.Items.Any())
 				validationResult.AddValidationMessage(Resource.ASaleMustHaveAtLeastOneItem);
 
+			if (entity.Seller == null || entity.Seller.Id == 0)
+				validationResult.AddValidationMessage(Resource.ASaleMusHaveAValidSeller);
+
 			return validationResult.IsValid;
 		}
 	}
