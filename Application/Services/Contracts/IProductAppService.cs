@@ -3,7 +3,7 @@ using Domain.Entities;
 
 namespace Application.Services.Contracts
 {
-	internal interface IProductAppService : IAppServiceBase<Product, ProductModel>
+	public interface IProductAppService : IAppServiceBase<Product, ProductModel>
 	{
 	}
 }

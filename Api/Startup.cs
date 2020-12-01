@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Api.Extensions;
+using Domain.Services;
+using Domain.Services.Contracts;
+using Infrastructure.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Domain.Services;
-using Domain.Services.Contracts;
 
 namespace Api
 {
@@ -29,7 +25,16 @@ namespace Api
 		{
 			services.AddControllers();
 
-			services.AddScoped<ISaleService, SaleService>();
+			services.AddDbContext<SalesContext>(options =>
+			{
+				options.UseInMemoryDatabase("SalesStore");
+			});
+
+			services.AddDomainServices();
+
+			services.AddAppServices();
+
+			services.AddRepositories();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +55,10 @@ namespace Api
 			{
 				endpoints.MapControllers();
 			});
+
+			using (var scope = app.ApplicationServices.CreateScope())
+			using (var context = scope.ServiceProvider.GetService<SalesContext>())
+				context.Database.EnsureCreated();
 		}
 	}
 }
