@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Domain", "Sales.Domain\Sales.Domain.csproj", "{52724A34-A8DA-4D66-9906-3517D77B35E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{52724A34-A8DA-4D66-9906-3517D77B35E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Application", "Sales.Application\Sales.Application.csproj", "{6E40068E-6B20-48E0-9E62-C37B0D0093D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{6E40068E-6B20-48E0-9E62-C37B0D0093D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Api", "Sales.Api\Sales.Api.csproj", "{5D55071E-FEF7-4A5E-ABB5-1009FC7747AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{5D55071E-FEF7-4A5E-ABB5-1009FC7747AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Infrastructure", "Sales.Infrastructure\Sales.Infrastructure.csproj", "{56D6C1D8-1DAB-46B3-8D44-0949D3FAE03D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.EntityFramework", "Infrastructure\Infrastructure.EntityFramework.csproj", "{56D6C1D8-1DAB-46B3-8D44-0949D3FAE03D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Resources", "Sales.Resources\Sales.Resources.csproj", "{58E51E68-DD2D-4009-8377-942F05AE823F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resources", "Resources\Resources.csproj", "{58E51E68-DD2D-4009-8377-942F05AE823F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Domain.Tests", "Sales.Domain.Tests\Sales.Domain.Tests.csproj", "{E43BB3E8-E384-4B1C-96C9-7386CC91CB49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{E43BB3E8-E384-4B1C-96C9-7386CC91CB49}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Api", "1 - Api", "{2969CA35-F034-4F0A-8FCD-0A0E4B1F9AC8}"
 EndProject
