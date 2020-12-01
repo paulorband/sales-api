@@ -11,9 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Api", "Sales.Api\Sale
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Infrastructure", "Sales.Infrastructure\Sales.Infrastructure.csproj", "{56D6C1D8-1DAB-46B3-8D44-0949D3FAE03D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Resources", "Sales.Resources\Sales.Resources.csproj", "{58E51E68-DD2D-4009-8377-942F05AE823F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Resources", "Sales.Resources\Sales.Resources.csproj", "{58E51E68-DD2D-4009-8377-942F05AE823F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Domain.Tests", "Sales.Domain.Tests\Sales.Domain.Tests.csproj", "{E43BB3E8-E384-4B1C-96C9-7386CC91CB49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Domain.Tests", "Sales.Domain.Tests\Sales.Domain.Tests.csproj", "{E43BB3E8-E384-4B1C-96C9-7386CC91CB49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Api", "1 - Api", "{2969CA35-F034-4F0A-8FCD-0A0E4B1F9AC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{430599A5-59E3-4591-AE3C-AFADBF010B0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{954B8CE5-AECE-4558-95B0-407423E2A32B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{D78F7058-1280-4B7A-B52B-6720B71C3054}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +56,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{52724A34-A8DA-4D66-9906-3517D77B35E3} = {954B8CE5-AECE-4558-95B0-407423E2A32B}
+		{6E40068E-6B20-48E0-9E62-C37B0D0093D2} = {430599A5-59E3-4591-AE3C-AFADBF010B0B}
+		{5D55071E-FEF7-4A5E-ABB5-1009FC7747AF} = {2969CA35-F034-4F0A-8FCD-0A0E4B1F9AC8}
+		{56D6C1D8-1DAB-46B3-8D44-0949D3FAE03D} = {D78F7058-1280-4B7A-B52B-6720B71C3054}
+		{E43BB3E8-E384-4B1C-96C9-7386CC91CB49} = {954B8CE5-AECE-4558-95B0-407423E2A32B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {038189E8-9E6C-4C4A-BC71-58979D0ADA95}
