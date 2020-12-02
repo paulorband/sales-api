@@ -28,9 +28,15 @@ namespace Infrastructure.EntityFramework
 
 		private void ConfigureProduct(EntityTypeBuilder<Product> entityTypeBuilder)
 		{
-			entityTypeBuilder.HasKey(p => p.Id);
-			entityTypeBuilder.Property(p => p.Name);
-			entityTypeBuilder.Property(p => p.Price);
+			entityTypeBuilder
+				.HasKey(p => p.Id);
+
+			entityTypeBuilder
+				.Property(p => p.Name);
+
+			entityTypeBuilder
+				.Property(p => p.Price);
+
 
 			entityTypeBuilder.HasData(
 				new Product { Id = 1, Name = "Smart TV LG 55\" 4K 55OLEDCX", Price = 4999 },
@@ -43,11 +49,21 @@ namespace Infrastructure.EntityFramework
 
 		private void ConfigureSeller(EntityTypeBuilder<Seller> entityTypeBuilder)
 		{
-			entityTypeBuilder.HasKey(p => p.Id);
-			entityTypeBuilder.Property(p => p.Name);
-			entityTypeBuilder.Property(p => p.Cpf);
-			entityTypeBuilder.Property(p => p.Email);
-			entityTypeBuilder.Property(p => p.Telefone);
+			entityTypeBuilder
+				.HasKey(p => p.Id);
+
+			entityTypeBuilder
+				.Property(p => p.Name);
+
+			entityTypeBuilder
+				.Property(p => p.Cpf);
+
+			entityTypeBuilder
+				.Property(p => p.Email);
+
+			entityTypeBuilder
+				.Property(p => p.Telefone);
+
 
 			entityTypeBuilder.HasData(
 				new Seller { Id = 1, Cpf = 12345678901, Email = "joao.alberto@gmail.com", Name = "João Alberto", Telefone = "31954562545" },
@@ -58,20 +74,46 @@ namespace Infrastructure.EntityFramework
 
 		private void ConfigureSaleItem(EntityTypeBuilder<SaleItem> entityTypeBuilder)
 		{
-			entityTypeBuilder.HasKey(p => p.Id);
-			entityTypeBuilder.Property(p => p.Amount);
-			entityTypeBuilder.Property(p => p.UnitPrice);
-			entityTypeBuilder.HasOne(p => p.Product);
-			entityTypeBuilder.Ignore(p => p.TotalPrice);
+			entityTypeBuilder
+				.HasKey(p => p.Id);
+
+			entityTypeBuilder
+				.Property(p => p.Amount);
+
+			entityTypeBuilder
+				.Property(p => p.UnitPrice);
+
+			entityTypeBuilder
+				.HasOne(p => p.Product);
+
+			entityTypeBuilder
+				.HasOne(p => p.Sale)
+				.WithMany(s => s.Items);
+
+			entityTypeBuilder
+				.Ignore(p => p.TotalPrice);
+
 		}
 
 		private void ConfigureSale(EntityTypeBuilder<Sale> entityTypeBuilder)
 		{
-			entityTypeBuilder.HasKey(p => p.Id);
-			entityTypeBuilder.Property(p => p.Status);
-			entityTypeBuilder.Property(p => p.Date);
-			entityTypeBuilder.HasOne(p => p.Seller);
-			entityTypeBuilder.HasMany(p => p.Items);
+			entityTypeBuilder
+				.HasKey(p => p.Id);
+
+			entityTypeBuilder
+				.Property(p => p.Status);
+
+			entityTypeBuilder
+				.Property(p => p.Date);
+
+			entityTypeBuilder
+				.HasOne(p => p.Seller);
+
+			entityTypeBuilder
+				.HasMany(p => p.Items)
+				.WithOne(i => i.Sale)
+				.IsRequired()
+				.OnDelete(DeleteBehavior.Cascade);
 		}
 	}
 }
