@@ -1,3 +1,5 @@
 .vs
 bin
 obj
+Api.csproj.user
+Api.xml

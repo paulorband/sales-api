@@ -9,6 +9,8 @@ namespace Domain.Services.Contracts
 		void Insert(TEntity entity);
 		void Update(TEntity entity);
 		void Delete(TEntity entity);
+		void Delete(long id);
+
 		TEntity GetById(long id);
 	}
 }

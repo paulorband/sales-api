@@ -12,6 +12,7 @@ namespace Application.Services.Contracts
 		void Insert(TModel entity);
 		void Update(TModel entity);
 		void Delete(TModel entity);
+		void Delete(long id);
 		TModel GetById(long id);
 	}
 }

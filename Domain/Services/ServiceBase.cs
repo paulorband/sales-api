@@ -19,6 +19,11 @@ namespace Domain.Services
 			Repository.Delete(entity);
 		}
 
+		public void Delete(long id)
+		{
+			Repository.Delete(GetById(id));
+		}
+
 		public virtual IList<TEntity> GetAll()
 		{
 			return Repository.GetAll();

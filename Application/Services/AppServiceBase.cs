@@ -51,5 +51,10 @@ namespace Application.Services
 		{
 			return entities.Select(e => Mapper.ToModel(e)).ToList();
 		}
+
+		public void Delete(long id)
+		{
+			Service.Delete(id);
+		}
 	}
 }
