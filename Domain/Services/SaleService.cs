@@ -24,6 +24,13 @@ namespace Domain.Services
 			base.Insert(sale);
 		}
 
+		public void UpdateStatus(Sale sale, SaleStatus newStatus)
+		{
+			sale.UpdateStatus(newStatus);
+
+			Update(sale);
+		}
+
 		private void ThrowExceptionIfSaleIsInvalid(Sale sale)
 		{
 			if (!SaleValidator.Validate(sale, out ValidationResult validationResult))

@@ -25,7 +25,7 @@ namespace Api.Controllers
 		/// </summary>
 		/// <returns></returns>
 		[HttpGet]
-		public IEnumerable<TModel> Get()
+		public virtual IEnumerable<TModel> Get()
 		{
 			return AppService.GetAll();
 		}
@@ -36,7 +36,7 @@ namespace Api.Controllers
 		/// <param name="id"></param>
 		/// <returns></returns>
 		[HttpGet("{id}")]
-		public TModel Get(int id)
+		public virtual TModel Get(int id)
 		{
 			return AppService.GetById(id);
 		}
@@ -46,7 +46,7 @@ namespace Api.Controllers
 		/// </summary>
 		/// <param name="model"></param>
 		[HttpPost]
-		public void Post([FromBody] TModel model)
+		public virtual void Post([FromBody] TModel model)
 		{
 			AppService.Insert(model);
 		}
@@ -56,7 +56,7 @@ namespace Api.Controllers
 		/// </summary>
 		/// <param name="model"></param>
 		[HttpPut]
-		public void Put([FromBody] TModel model)
+		public virtual void Put([FromBody] TModel model)
 		{
 			AppService.Update(model);
 		}
@@ -66,7 +66,7 @@ namespace Api.Controllers
 		/// </summary>
 		/// <param name="id"></param>
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public virtual void Delete(int id)
 		{
 			AppService.Delete(id);
 		}

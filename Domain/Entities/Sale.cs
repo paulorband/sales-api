@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Validators.Contracts;
+using Resources;
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities
@@ -18,6 +20,40 @@ namespace Domain.Entities
 		public void RemoveItem(SaleItem saleItem)
 		{
 			Items.Remove(saleItem);
+		}
+
+		public void UpdateStatus(SaleStatus status)
+		{
+			ThrowExceptionIfCanNotGoToNewStatus(status);
+
+			Status = status;
+		}
+
+		private void ThrowExceptionIfCanNotGoToNewStatus(SaleStatus newStatus)
+		{
+			switch (Status)
+			{
+				case SaleStatus.WaitingPayment:
+					if (newStatus != SaleStatus.Canceled && newStatus != SaleStatus.PaymentAccepted)
+						throw new EntityValidationException(string.Format(Resource.SaleCantGoToX, newStatus.ToString()));
+					break;
+
+				case SaleStatus.PaymentAccepted:
+					if (newStatus != SaleStatus.Canceled && newStatus != SaleStatus.ShippedToCarrier)
+						throw new EntityValidationException(string.Format(Resource.SaleCantGoToX, newStatus.ToString()));
+					break;
+
+				case SaleStatus.ShippedToCarrier:
+					if (newStatus != SaleStatus.Delivered)
+						throw new EntityValidationException(string.Format(Resource.SaleCantGoToX, newStatus.ToString()));
+					break;
+
+				case SaleStatus.Canceled:
+					throw new EntityValidationException(Resource.ACanceledSaleCantBeUpdated);
+
+				case SaleStatus.Delivered:
+					throw new EntityValidationException(Resource.ADeliveredSaleCantBeUpdated);
+			}
 		}
 	}
 }

@@ -63,5 +63,122 @@ namespace Domain.Tests
 
 			Assert.Pass();
 		}
+
+		[Test]
+		public void Update_the_status_of_a_Waiting_Payment_sale_only_when_the_new_status_was_Payment_Accepted_or_Canceled()
+		{
+			var sale = new Sale() { Status = SaleStatus.WaitingPayment };
+
+			//go to payment accepted
+			SaleService.UpdateStatus(sale, SaleStatus.PaymentAccepted);
+			Assert.AreEqual(sale.Status, SaleStatus.PaymentAccepted);
+
+			//go to canceled
+			sale.Status = SaleStatus.WaitingPayment;
+			SaleService.UpdateStatus(sale, SaleStatus.Canceled);
+			Assert.AreEqual(sale.Status, SaleStatus.Canceled);
+
+			//go to shipped to carrier
+			sale.Status = SaleStatus.WaitingPayment;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.ShippedToCarrier));
+
+			//go to delivered
+			sale.Status = SaleStatus.WaitingPayment;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Delivered));
+
+		}
+
+		[Test]
+		public void Update_the_status_of_a_Accepted_Payment_sale_only_when_the_new_status_was_Shipped_to_Carrier_or_Canceled()
+		{
+			var sale = new Sale() { Status = SaleStatus.PaymentAccepted };
+
+			//go to canceled
+			SaleService.UpdateStatus(sale, SaleStatus.Canceled);
+			Assert.AreEqual(sale.Status, SaleStatus.Canceled);
+
+			//go to shipped to carrier
+			sale.Status = SaleStatus.PaymentAccepted;
+			SaleService.UpdateStatus(sale, SaleStatus.ShippedToCarrier);
+
+			//go to waiting payment
+			sale.Status = SaleStatus.PaymentAccepted;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.WaitingPayment));
+
+			//go to delivered
+			sale.Status = SaleStatus.PaymentAccepted;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Delivered));
+		}
+
+		[Test]
+		public void Update_the_status_of_a_Shipped_to_Carrier_sale_only_when_the_new_status_was_Delivered()
+		{
+			var sale = new Sale() { Status = SaleStatus.ShippedToCarrier };
+
+			//go to delivered
+			SaleService.UpdateStatus(sale, SaleStatus.Delivered);
+			Assert.AreEqual(sale.Status, SaleStatus.Delivered);
+
+			//go to canceled
+			sale.Status = SaleStatus.ShippedToCarrier;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Canceled));
+
+			//go to payment accepted
+			sale.Status = SaleStatus.ShippedToCarrier;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.PaymentAccepted));
+
+			//go to waiting payment
+			sale.Status = SaleStatus.ShippedToCarrier;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.WaitingPayment));
+		}
+
+		[Test]
+		public void Can_not_update_the_status_of_a_Delivered_sale()
+		{
+			var sale = new Sale() { Status = SaleStatus.Delivered };
+
+			//go to waiting payment
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.WaitingPayment));
+
+			//go to payment accepted
+			sale.Status = SaleStatus.Delivered;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.PaymentAccepted));
+
+			//go to canceled
+			sale.Status = SaleStatus.Delivered;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Canceled));
+
+			//go to shipped to carrier
+			sale.Status = SaleStatus.Delivered;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.ShippedToCarrier));
+
+			//go to delivered
+			sale.Status = SaleStatus.Delivered;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Delivered));
+		}
+
+		[Test]
+		public void Can_not_update_the_status_of_a_Canceled_sale()
+		{
+			var sale = new Sale() { Status = SaleStatus.Canceled };
+
+			//go to waiting payment
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.WaitingPayment));
+
+			//go to payment accepted
+			sale.Status = SaleStatus.Canceled;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.PaymentAccepted));
+
+			//go to shipped to carrier
+			sale.Status = SaleStatus.Canceled;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.ShippedToCarrier));
+
+			//go to delivered
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Delivered));
+
+			//go to canceled
+			sale.Status = SaleStatus.Canceled;
+			Assert.Throws<EntityValidationException>(() => SaleService.UpdateStatus(sale, SaleStatus.Canceled));
+		}
 	}
 }

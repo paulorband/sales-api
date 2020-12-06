@@ -11,5 +11,12 @@ namespace Application.Services
 		public SaleAppService(ISaleService saleService, IMapper<Sale, SaleModel> saleMapper) : base(saleService, saleMapper)
 		{
 		}
+
+		public void UpdateStatus(SaleStatusModel saleStatusModel)
+		{
+			Sale sale = Service.GetById(saleStatusModel.SaleId);
+
+			Service.Update(sale);
+		}
 	}
 }

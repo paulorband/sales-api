@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A canceled sale can&apos;t be updated.
+        /// </summary>
+        public static string ACanceledSaleCantBeUpdated {
+            get {
+                return ResourceManager.GetString("ACanceledSaleCantBeUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A delivered sale can&apos;t be updated.
+        /// </summary>
+        public static string ADeliveredSaleCantBeUpdated {
+            get {
+                return ResourceManager.GetString("ADeliveredSaleCantBeUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A sale mus have a valid seller.
         /// </summary>
         public static string ASaleMusHaveAValidSeller {
@@ -75,6 +93,15 @@ namespace Resources {
         public static string ASaleMustHaveAtLeastOneItem {
             get {
                 return ResourceManager.GetString("ASaleMustHaveAtLeastOneItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sale can&apos;t go to &quot;{0}&quot;.
+        /// </summary>
+        public static string SaleCantGoToX {
+            get {
+                return ResourceManager.GetString("SaleCantGoToX", resourceCulture);
             }
         }
     }

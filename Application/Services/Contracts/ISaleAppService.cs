@@ -8,5 +8,6 @@ namespace Application.Services.Contracts
 {
 	public interface ISaleAppService : IAppServiceBase<Sale, SaleModel>
 	{
+		void UpdateStatus(SaleStatusModel saleStatusModel);
 	}
 }

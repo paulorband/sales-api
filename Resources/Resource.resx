@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACanceledSaleCantBeUpdated" xml:space="preserve">
+    <value>A canceled sale can't be updated</value>
+  </data>
+  <data name="ADeliveredSaleCantBeUpdated" xml:space="preserve">
+    <value>A delivered sale can't be updated</value>
+  </data>
   <data name="ASaleMusHaveAValidSeller" xml:space="preserve">
     <value>A sale mus have a valid seller</value>
   </data>
   <data name="ASaleMustHaveAtLeastOneItem" xml:space="preserve">
     <value>A sale must have at least one item</value>
+  </data>
+  <data name="SaleCantGoToX" xml:space="preserve">
+    <value>Sale can't go to "{0}"</value>
   </data>
 </root>
