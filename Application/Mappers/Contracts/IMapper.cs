@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Mappers.Contracts
+﻿namespace Application.Mappers.Contracts
 {
 	public interface IMapper<TEntity, TModel>
 	{

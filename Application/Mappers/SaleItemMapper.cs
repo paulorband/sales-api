@@ -2,7 +2,6 @@
 using Application.Models;
 using Domain.Entities;
 using Domain.Services.Contracts;
-using System;
 
 namespace Application.Mappers
 {

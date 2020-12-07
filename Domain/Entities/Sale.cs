@@ -1,5 +1,4 @@
-﻿using Domain.Validators.Contracts;
-using Resources;
+﻿using Resources;
 using System;
 using System.Collections.Generic;
 
