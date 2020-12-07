@@ -132,4 +132,7 @@
   <data name="SaleCantGoToX" xml:space="preserve">
     <value>Sale can't go to "{0}"</value>
   </data>
+  <data name="TheItemXHaveAInvalidProduct" xml:space="preserve">
+    <value>The item '{0}' have a invalid product</value>
+  </data>
 </root>

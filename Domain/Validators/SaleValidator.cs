@@ -7,17 +7,35 @@ namespace Domain.Validators
 {
 	public class SaleValidator : IValidator<Sale>
 	{
-		public bool Validate(Sale entity, out ValidationResult validationResult)
+		public bool Validate(Sale sale, out ValidationResult validationResult)
 		{
 			validationResult = new ValidationResult();
 
-			if (!entity.Items.Any())
+			if (!sale.Items.Any())
 				validationResult.AddValidationMessage(Resource.ASaleMustHaveAtLeastOneItem);
+			
+			ValidateSeller(sale, validationResult);
 
-			if (entity.Seller == null || entity.Seller.Id == 0)
-				validationResult.AddValidationMessage(Resource.ASaleMusHaveAValidSeller);
+			ValidateItems(sale, validationResult);
 
 			return validationResult.IsValid;
+		}
+
+		private static void ValidateSeller(Sale sale, ValidationResult validationResult)
+		{
+			if (sale.Seller == null || sale.Seller.Id == 0)
+				validationResult.AddValidationMessage(Resource.ASaleMusHaveAValidSeller);
+		}
+
+		private void ValidateItems(Sale sale, ValidationResult validationResult)
+		{
+			for (var i = 0; i < sale.Items.Count; i++)
+			{
+				var item = sale.Items[0];
+
+				if (item.Product == null || item.Product.Id == 0)
+					validationResult.AddValidationMessage(string.Format(Resource.TheItemXHaveAInvalidProduct, i + 1));
+			}
 		}
 	}
 }

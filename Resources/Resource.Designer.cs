@@ -104,5 +104,14 @@ namespace Resources {
                 return ResourceManager.GetString("SaleCantGoToX", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The item &apos;{0}&apos; have a invalid product.
+        /// </summary>
+        public static string TheItemXHaveAInvalidProduct {
+            get {
+                return ResourceManager.GetString("TheItemXHaveAInvalidProduct", resourceCulture);
+            }
+        }
     }
 }
