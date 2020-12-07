@@ -22,6 +22,16 @@ namespace Api.Controllers
 
 		}
 
+		/// <summary>
+		/// Update status of a Sale
+		/// </summary>
+		/// <param name="saleStatusModel">
+		/// WaitingPayment = 0,
+		/// PaymentAccepted = 1,
+		/// Canceled = 2,
+		/// ShippedToCarrier = 3,
+		/// Delivered = 4
+		/// </param>
 		[Route("Status")]
 		[HttpPut]
 		public void Status(SaleStatusModel saleStatusModel)
