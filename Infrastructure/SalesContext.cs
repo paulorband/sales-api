@@ -1,9 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.EntityFramework
 {
@@ -84,11 +81,14 @@ namespace Infrastructure.EntityFramework
 				.Property(p => p.UnitPrice);
 
 			entityTypeBuilder
-				.HasOne(p => p.Product);
+				.HasOne(p => p.Product)
+				.WithMany()
+				.IsRequired();
 
 			entityTypeBuilder
 				.HasOne(p => p.Sale)
-				.WithMany(s => s.Items);
+				.WithMany(s => s.Items)
+				.IsRequired();
 
 			entityTypeBuilder
 				.Ignore(p => p.TotalPrice);
@@ -107,7 +107,9 @@ namespace Infrastructure.EntityFramework
 				.Property(p => p.Date);
 
 			entityTypeBuilder
-				.HasOne(p => p.Seller);
+				.HasOne(p => p.Seller)
+				.WithMany()
+				.IsRequired();
 
 			entityTypeBuilder
 				.HasMany(p => p.Items)
