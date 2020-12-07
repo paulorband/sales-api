@@ -11,6 +11,9 @@ namespace Application.Mappers
 	{
 		public Product ToEntity(ProductModel model)
 		{
+			if (model == null)
+				return null;
+
 			return new Product
 			{
 				Id = model.Id,

@@ -1,6 +1,7 @@
 ﻿using Application.Mappers.Contracts;
 using Application.Models;
 using Domain.Entities;
+using Domain.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,18 @@ namespace Application.Mappers
 {
 	public class SaleMapper : IMapper<Sale, SaleModel>
 	{
-		public SaleMapper(IMapper<Seller, SellerModel> sellerMapper, 
-			IMapper<SaleItem, SaleItemModel> saleItemMapper)
+		public SaleMapper(IMapper<Seller, SellerModel> sellerMapper,
+			IMapper<SaleItem, SaleItemModel> saleItemMapper,
+			ISellerService sellerService)
 		{
 			SellerMapper = sellerMapper;
 			SaleItemMapper = saleItemMapper;
+			SellerService = sellerService;
 		}
 
 		public IMapper<Seller, SellerModel> SellerMapper { get; }
 		public IMapper<SaleItem, SaleItemModel> SaleItemMapper { get; }
+		public ISellerService SellerService { get; }
 
 		public Sale ToEntity(SaleModel model)
 		{
@@ -27,14 +31,19 @@ namespace Application.Mappers
 				Id = model.Id,
 				Date = model.Date,
 				Status = model.Status,
-				Seller = SellerMapper.ToEntity(model.Seller),
+				Seller = MapSeller(model),
 				Items = MapItems(model)
 			};
 		}
 
+		private Seller MapSeller(SaleModel model)
+		{
+			return SellerService.GetById(model.Seller?.Id ?? 0);
+		}
+
 		private List<SaleItem> MapItems(SaleModel model)
 		{
-			return model.Items.Select(s => SaleItemMapper.ToEntity(s)).ToList();
+			return model.Items.Select(item => SaleItemMapper.ToEntity(item)).ToList();
 		}
 
 		public SaleModel ToModel(Sale entity)

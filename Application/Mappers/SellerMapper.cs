@@ -8,6 +8,9 @@ namespace Application.Mappers
 	{
 		public Seller ToEntity(SellerModel model)
 		{
+			if (model == null)
+				return null;
+
 			return new Seller
 			{
 				Id = model.Id,

@@ -1,17 +1,21 @@
 ﻿using Application.Mappers.Contracts;
 using Application.Models;
 using Domain.Entities;
+using Domain.Services.Contracts;
+using System;
 
 namespace Application.Mappers
 {
 	public class SaleItemMapper : IMapper<SaleItem, SaleItemModel>
 	{
-		public SaleItemMapper(IMapper<Product, ProductModel> productMapper)
+		public SaleItemMapper(IMapper<Product, ProductModel> productMapper, IProductService productService)
 		{
 			ProductMapper = productMapper;
+			ProductService = productService;
 		}
 
 		protected IMapper<Product, ProductModel> ProductMapper { get; }
+		public IProductService ProductService { get; }
 
 		public SaleItem ToEntity(SaleItemModel model)
 		{
@@ -19,9 +23,14 @@ namespace Application.Mappers
 			{
 				Id = model.Id,
 				Amount = model.Amount,
-				Product = ProductMapper.ToEntity(model.Product),
+				Product = GetProduct(model),
 				UnitPrice = model.UnitPrice
 			};
+		}
+
+		private Product GetProduct(SaleItemModel model)
+		{
+			return ProductService.GetById(model.Product?.Id ?? 0);
 		}
 
 		public SaleItemModel ToModel(SaleItem entity)
