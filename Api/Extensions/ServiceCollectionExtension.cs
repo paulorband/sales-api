@@ -7,8 +7,8 @@ using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.Services.Contracts;
-using Domain.Validators;
-using Domain.Validators.Contracts;
+using Domain.Validation;
+using Domain.Validation.Contracts;
 using Infrastructure.EntityFramework.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

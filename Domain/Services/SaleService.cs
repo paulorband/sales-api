@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services.Contracts;
-using Domain.Validators;
-using Domain.Validators.Contracts;
+using Domain.Validation;
+using Domain.Validation.Contracts;
 
 namespace Domain.Services
 {

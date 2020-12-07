@@ -1,7 +1,7 @@
 using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services;
-using Domain.Validators;
+using Domain.Validation;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;

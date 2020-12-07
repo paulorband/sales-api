@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Validators.Contracts
+namespace Domain.Validation.Contracts
 {
 	public interface IValidator<TEntity> where TEntity : EntityBase
 	{

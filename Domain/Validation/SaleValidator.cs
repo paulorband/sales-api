@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
-using Domain.Validators.Contracts;
+using Domain.Validation.Contracts;
 using Resources;
 using System.Linq;
 
-namespace Domain.Validators
+namespace Domain.Validation
 {
 	public class SaleValidator : IValidator<Sale>
 	{

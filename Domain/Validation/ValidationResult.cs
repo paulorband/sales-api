@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain.Validators
+namespace Domain.Validation
 {
 	public class ValidationResult
 	{
