@@ -3,7 +3,6 @@ using Domain.Repositories;
 using Domain.Services.Contracts;
 using Domain.Validators;
 using Domain.Validators.Contracts;
-using System;
 
 namespace Domain.Services
 {
@@ -21,7 +20,17 @@ namespace Domain.Services
 		{
 			ThrowExceptionIfSaleIsInvalid(sale);
 
+			UpdateUnitPriceOfItems(sale);
+
 			base.Insert(sale);
+		}
+
+		private void UpdateUnitPriceOfItems(Sale sale)
+		{
+			foreach (var item in sale.Items)
+			{
+				item.UnitPrice = item.Product.Price;
+			}
 		}
 
 		public void UpdateStatus(Sale sale, SaleStatus newStatus)

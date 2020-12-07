@@ -1,9 +1,10 @@
-using Moq;
-using NUnit.Framework;
 using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.Validators;
+using Moq;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Domain.Tests
 {
@@ -43,9 +44,12 @@ namespace Domain.Tests
 		[Test]
 		public void Not_throw_entity_validation_exception_when_try_to_insert_sale_that_have_items()
 		{
-			var sale = new Sale() { Seller = new Seller() { Id = 1 } };
-			
-			sale.AddItem(new SaleItem());
+			var sale = new Sale()
+			{
+				Seller = new Seller() { Id = 1 }
+			};
+
+			sale.AddItem(new SaleItem { Product = new Product { Id = 1 } });
 
 			SaleService.Insert(sale);
 
@@ -55,13 +59,39 @@ namespace Domain.Tests
 		[Test]
 		public void Not_throw_entity_validation_exception_when_try_to_insert_sale_that_have_a_valid_seller()
 		{
-			var sale = new Sale() { Seller = new Seller() { Id = 1 } };
+			var sale = new Sale() 
+			{ 
+				Seller = new Seller() { Id = 1 }
+			};
 
-			sale.AddItem(new SaleItem());
+			sale.AddItem(new SaleItem { Product = new Product { Id = 1 } });
 
 			SaleService.Insert(sale);
 
 			Assert.Pass();
+		}
+
+		[Test]
+		public void Update_all_unit_price_items_with_product_price_when_insert_new_sale()
+		{
+			var product1 = new Product { Id = 1, Price = 10 };
+			var product2 = new Product { Id = 2, Price = 20 };
+
+
+			var sale = new Sale()
+			{
+				Seller = new Seller() { Id = 1 },
+				Items = new List<SaleItem>
+				{
+					new SaleItem{ Amount = 1, Product = product1 },
+					new SaleItem{ Amount = 1, Product = product2 },
+				}
+			};
+
+			SaleService.Insert(sale);
+
+			Assert.AreEqual(sale.Items[0].UnitPrice, product1.Price);
+			Assert.AreEqual(sale.Items[1].UnitPrice, product2.Price);
 		}
 
 		[Test]
