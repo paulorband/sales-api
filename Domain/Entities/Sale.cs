@@ -21,6 +21,11 @@ namespace Domain.Entities
 			Items.Remove(saleItem);
 		}
 
+		internal void SetInitialSatus()
+		{
+			Status = SaleStatus.WaitingPayment;
+		}
+
 		public void UpdateStatus(SaleStatus status)
 		{
 			ThrowExceptionIfCanNotGoToNewStatus(status);

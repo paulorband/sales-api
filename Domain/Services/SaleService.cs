@@ -20,6 +20,8 @@ namespace Domain.Services
 		{
 			ThrowExceptionIfSaleIsInvalid(sale);
 
+			sale.SetInitialSatus();
+
 			UpdateUnitPriceOfItems(sale);
 
 			base.Insert(sale);

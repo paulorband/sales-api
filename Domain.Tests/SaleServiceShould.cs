@@ -95,6 +95,24 @@ namespace Domain.Tests
 		}
 
 		[Test]
+		public void Insert_new_sale_ever_with_Waiting_Payment_status()
+		{
+			var sale = new Sale()
+			{
+				Seller = new Seller() { Id = 1 },
+				Status = SaleStatus.ShippedToCarrier,
+				Items = new List<SaleItem>
+				{
+					new SaleItem{ Amount = 1, Product = new Product { Id = 1 } }
+				}
+			};
+
+			SaleService.Insert(sale);
+
+			Assert.AreEqual(sale.Status, SaleStatus.WaitingPayment);
+		}
+
+		[Test]
 		public void Update_the_status_of_a_Waiting_Payment_sale_only_when_the_new_status_was_Payment_Accepted_or_Canceled()
 		{
 			var sale = new Sale() { Status = SaleStatus.WaitingPayment };
